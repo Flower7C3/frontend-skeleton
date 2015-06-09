@@ -1,0 +1,13 @@
+---
+server:
+    install: '1'
+    packages: [vim, mc, git, nodejs, npm, nodejs-legacy, ruby, bundler, fontforge]
+    timezone: Europe/Warsaw
+    locale: pl_PL.UTF-8
+app:
+    npms: [bower, gulp]
+    gems: [sass, fontcustom]
+vagrant_local:
+    install: '1'
+    vm: { base_box: trusty64, hostname: default, ip: 192.168.33.99, memory: '1024', sharedfolder: ./, enableWindows: '1', useVagrantCloud: '1', syncType: nfs }
+

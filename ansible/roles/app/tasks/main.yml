@@ -1,0 +1,29 @@
+---
+# application tasks to be customized and to run after the main provision
+
+
+- name: Install nodes
+  shell: npm install -g {{ item }}
+  with_items: app.npms
+  sudo: yes
+
+- name: Install gems
+  shell: gem install {{ item }}
+  with_items: app.gems
+  sudo: yes
+
+
+- name: Prepare bundler
+  shell: bundle
+  args:
+    chdir: /vagrant
+
+- name: Instal bower vendors
+  shell: bower install
+  args:
+      chdir: /vagrant
+
+- name: Instal npm vendors
+  shell: npm install
+  args:
+      chdir: /vagrant
