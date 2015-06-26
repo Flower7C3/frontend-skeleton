@@ -6,7 +6,7 @@ var config = require('../../config').rsync;
  * Copy files and folder to server
  * via rsync
  */
-gulp.task('rsync', function() {
+gulp.task('rsync', ['build:production'], function() {
   return gulp.src(config.src)
     .pipe(rsync(config.options));
 });
