@@ -125,13 +125,14 @@ module.exports = {
             src: developmentAssets + '/fonts/*',
             dest: productionAssets + '/fonts'
         }
-    }, copyfiles: {
+    },
+    copyfiles: {
         development: {
-            src: srcAssets + '/files/*',
+            src: srcAssets + '/files/**/*',
             dest: developmentAssets + '/files'
         },
         production: {
-            src: developmentAssets + '/files/*',
+            src: developmentAssets + '/files/**/*',
             dest: productionAssets + '/files'
         }
     },
@@ -163,6 +164,7 @@ module.exports = {
         scripts: srcAssets + '/javascripts/**/*.js',
         images: srcAssets + '/images/**/*',
         sprites: srcAssets + '/images/**/*.png',
+        files: srcAssets + '/files/**/*',
         svg: 'vectors/*.svg'
     },
     scsslint: {
