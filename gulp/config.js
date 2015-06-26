@@ -31,7 +31,8 @@ var autoprefixerBrowsers = [
         clean: true,
         exclude: ['.DS_Store'],
         include: []
-    };
+    },
+    useGzip = false;
 
 /** DO NOT MODIFY IF DO NOT KNOW WHAT IS GOING ON BELOW **/
 module.exports = {
@@ -114,7 +115,8 @@ module.exports = {
     gzip: {
         src: production + '/**/*.{html,xml,json,css,js}',
         dest: production,
-        options: {}
+        options: {},
+        enabled: useGzip
     },
     copyfonts: {
         development: {
