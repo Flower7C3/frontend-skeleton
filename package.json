@@ -33,6 +33,7 @@
     "gulp-minify-css": "^0.3.11",
     "gulp-notify": "^2.0.0",
     "gulp-plumber": "^0.6.6",
+    "gulp-prompt": "^0.1.2",
     "gulp-rev": "^2.0.1",
     "gulp-rev-collector": "^0.1.1",
     "gulp-rsync": "0.0.4",
@@ -49,6 +50,7 @@
     "pretty-hrtime": "^0.2.2",
     "require-dir": "^0.1.0",
     "run-sequence": "^1.0.1",
+    "vinyl-ftp": "^0.4.5",
     "vinyl-source-stream": "^1.0.0",
     "watchify": "^2.0.0"
   }

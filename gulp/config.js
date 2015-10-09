@@ -32,7 +32,9 @@ var autoprefixerBrowsers = [
         exclude: ['.DS_Store'],
         include: []
     },
-    useGzip = false;
+    ftpOptions = require('../ftpauth'),
+    useGzip = false,
+    useWebp = false;
 
 /** DO NOT MODIFY IF DO NOT KNOW WHAT IS GOING ON BELOW **/
 module.exports = {
@@ -110,7 +112,8 @@ module.exports = {
     webp: {
         src: productionAssets + '/images/**/*.{jpg,jpeg,png}',
         dest: productionAssets + '/images/',
-        options: {}
+        options: {},
+        enabled: useWebp
     },
     gzip: {
         src: production + '/**/*.{html,xml,json,css,js}',
@@ -120,11 +123,11 @@ module.exports = {
     },
     copyfonts: {
         development: {
-            src: srcAssets + '/fonts/*',
+            src: srcAssets + '/fonts/**/*',
             dest: developmentAssets + '/fonts'
         },
         production: {
-            src: developmentAssets + '/fonts/*',
+            src: developmentAssets + '/fonts/**/*',
             dest: productionAssets + '/fonts'
         }
     },
@@ -264,5 +267,10 @@ module.exports = {
     rsync: {
         src: production + '/**',
         options: rsyncOptions
+    },
+    ftp: {
+        src: production + '/**',
+        base: production,
+        options: ftpOptions
     }
 };

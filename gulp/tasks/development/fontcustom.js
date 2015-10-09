@@ -7,5 +7,5 @@ var shell = require('gulp-shell');
  * `brew install eot-utils`
  */
 gulp.task('fontcustom', shell.task([
-  'bundle exec fontcustom compile'
+  //'bundle exec fontcustom compile'
 ]));
