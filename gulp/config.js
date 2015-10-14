@@ -7,6 +7,13 @@ var src = 'app',
     productionAssets = build + '/production/assets',
     config = require('../config/config');
 
+try {
+    config.options.ftp = require('../config/auth-ftp');
+    config.options.rsync = require('../config/auth-rsync');
+} catch (e) {
+
+}
+
 module.exports = {
     browsersync: {
         development: {

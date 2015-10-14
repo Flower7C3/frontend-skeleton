@@ -36,7 +36,8 @@ export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 ---
 ## Setup
 
-Open `gulp/config.js` and change settings if needed. Only the `rsync` settings need to be adjusted. Change the `destination` to a path on your webserver and change `hostname` and `username`.
+Change settings in `config/config.js`, `config/jekyll.yml` and `config/jekyll.prod.yml`. Create `config/auth-ftp.js` and/or `config/auth-rsync.js` files if needed.
+Create Your app in `app/` directory.
 
 ---
 ## Running Gulp.js

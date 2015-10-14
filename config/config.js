@@ -1,6 +1,3 @@
-var rsync = require('./auth-rsync');
-var ftp = require('./auth-ftp');
-
 module.exports = {
     options: {
         inlineCss: {
@@ -22,8 +19,8 @@ module.exports = {
             extensions: ['png'],
             maxImageSize: 20 * 1024 //bytes
         },
-        rsync: rsync,
-        ftp: ftp
+        rsync: {},
+        ftp: {}
     },
     modules: {
         inlineCSS: true,
