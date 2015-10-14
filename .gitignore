@@ -5,4 +5,5 @@ app/_bower_components
 .fontcustom-manifest.json
 .vagrant
 .idea
-ftpauth.js
+config/auth-ftp.js
+config/auth-rsync.js

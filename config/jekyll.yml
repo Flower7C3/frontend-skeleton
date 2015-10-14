@@ -1,0 +1,11 @@
+# Site settings
+title: Example Project
+description: Lorem Ipsum
+baseurl: "/" # the subpath of your site, e.g. /blog/
+url: "http://192.168.33.99:9999" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+
+source: ./app
+destination: ./build

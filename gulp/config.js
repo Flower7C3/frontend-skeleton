@@ -1,42 +1,12 @@
-/** DIRECTORIES CONFIG **/
 var src = 'app',
     build = 'build',
     development = 'build/development',
     production = 'build/production',
     srcAssets = src + '/_assets',
     developmentAssets = build + '/assets',
-    productionAssets = build + '/production/assets';
+    productionAssets = build + '/production/assets',
+    config = require('../config/config');
 
-/** MODULES CONFIG **/
-var autoprefixerBrowsers = [
-        'last 2 versions',
-        'safari 5',
-        'ie 8',
-        'ie 9',
-        'opera 12.1',
-        'ios 6',
-        'android 4'
-    ],
-    base64maxImageSize = 20 * 1024, //bytes
-    rsyncOptions = {
-        destination: '~/path/to/my/website/root/',
-        root: production,
-        hostname: 'mydomain.com',
-        username: 'user',
-        incremental: true,
-        progress: true,
-        relative: true,
-        emptyDirectories: true,
-        recursive: true,
-        clean: true,
-        exclude: ['.DS_Store'],
-        include: []
-    },
-    ftpOptions = require('../ftpauth'),
-    useGzip = false,
-    useWebp = false;
-
-/** DO NOT MODIFY IF DO NOT KNOW WHAT IS GOING ON BELOW **/
 module.exports = {
     browsersync: {
         development: {
@@ -61,16 +31,44 @@ module.exports = {
     delete: {
         src: [developmentAssets]
     },
+    imageDimensions: {
+        development: {
+            src: development + '/**/*.html',
+            dest: development + '/',
+            images: '../../../../../../' + srcAssets + '/images/',
+            enabled: config.modules.imageDimensions
+        },
+        production: {
+            src: production + '/**/*.html',
+            dest: production + '/',
+            images: '../../../../../../' + srcAssets + '/images/',
+            enabled: config.modules.imageDimensions
+        }
+    },
+    inlineCss: {
+        development: {
+            src: development + '/**/*.html',
+            dest: development + '/',
+            options: config.options.inlineCss,
+            enabled: config.modules.inlineCSS
+        },
+        production: {
+            src: production + '/**/*.html',
+            dest: production + '/',
+            options: config.options.inlineCss,
+            enabled: config.modules.inlineCSS
+        }
+    },
     jekyll: {
         development: {
             src: src,
             dest: development,
-            config: '_config.yml'
+            config: 'config/jekyll.yml'
         },
         production: {
             src: src,
             dest: production,
-            config: '_config.yml,_config.build.yml'
+            config: 'config/jekyll.yml,config/jekyll.prod.yml'
         }
     },
     sass: {
@@ -85,7 +83,7 @@ module.exports = {
         }
     },
     autoprefixer: {
-        browsers: autoprefixerBrowsers,
+        browsers: config.options.autoprefixerBrowsers,
         cascade: true
     },
     browserify: {
@@ -113,31 +111,31 @@ module.exports = {
         src: productionAssets + '/images/**/*.{jpg,jpeg,png}',
         dest: productionAssets + '/images/',
         options: {},
-        enabled: useWebp
+        enabled: config.modules.webp
     },
     gzip: {
         src: production + '/**/*.{html,xml,json,css,js}',
         dest: production,
         options: {},
-        enabled: useGzip
+        enabled: config.modules.gzip
     },
     copyfonts: {
         development: {
-            src: srcAssets + '/fonts/**/*',
+            src: srcAssets + '/fonts/*',
             dest: developmentAssets + '/fonts'
         },
         production: {
-            src: developmentAssets + '/fonts/**/*',
+            src: developmentAssets + '/fonts/*',
             dest: productionAssets + '/fonts'
         }
     },
     copyfiles: {
         development: {
-            src: srcAssets + '/files/**/*',
+            src: srcAssets + '/files/*',
             dest: developmentAssets + '/files'
         },
         production: {
-            src: developmentAssets + '/files/**/*',
+            src: developmentAssets + '/files/*',
             dest: productionAssets + '/files'
         }
     },
@@ -146,8 +144,8 @@ module.exports = {
         dest: developmentAssets + '/css',
         options: {
             baseDir: build,
-            extensions: ['png'],
-            maxImageSize: base64maxImageSize, // bytes
+            extensions: config.options.base64.extensions,
+            maxImageSize: config.options.base64.maxImageSize, // bytes
             debug: false
         }
     },
@@ -169,7 +167,6 @@ module.exports = {
         scripts: srcAssets + '/javascripts/**/*.js',
         images: srcAssets + '/images/**/*',
         sprites: srcAssets + '/images/**/*.png',
-        files: srcAssets + '/files/**/*',
         svg: 'vectors/*.svg'
     },
     scsslint: {
@@ -266,11 +263,12 @@ module.exports = {
     },
     rsync: {
         src: production + '/**',
-        options: rsyncOptions
+        base: production,
+        options: config.options.rsync
     },
     ftp: {
         src: production + '/**',
         base: production,
-        options: ftpOptions
+        options: config.options.ftp
     }
 };
